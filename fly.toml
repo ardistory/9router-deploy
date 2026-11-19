@@ -1,22 +1,26 @@
-# fly.toml app configuration file generated for 9router-deploy on 2026-11-18T23:29:18Z
-#
-# See https://docs.fly.io/reference/configuration for information about how to use this file.
-#
-
-app = '9router-deploy'
-primary_region = 'sin'
+app = "9router-deploy"
+primary_region = "sin"
 
 [build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "20128"
+  HOSTNAME = "0.0.0.0"
+
+[mounts]
+  source = "9router_data"
+  destination = "/app/data"
+
 [http_service]
-  internal_port = 8080
-  force_https = true
-  auto_stop_machines = 'stop'
   auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
+  auto_stop_machines = "stop"
+  force_https = true
+  internal_port = 20128
+  min_machines_running = 1
+  processes = ["app"]
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
+  cpu_kind = "shared"
   cpus = 1
-  memory_mb = 512
+  memory = "1gb"
