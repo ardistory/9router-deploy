@@ -6,6 +6,7 @@ EXPOSE 20128
 
 ENV NODE_ENV=production
 ENV DATA_DIR=/app/data
+ENV PORT=20128
 
 # Pastikan direktori data ada (volume akan menimpa isinya saat runtime)
 RUN mkdir -p /app/data
